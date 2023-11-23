@@ -1,4 +1,4 @@
-package pl.shoxiyy.busi;
+package com.shoxiyy.busi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
