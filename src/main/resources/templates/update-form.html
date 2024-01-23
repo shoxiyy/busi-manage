@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: bootstrap}">
-    <title>Add form</title>
+    <title>Update form</title>
 </head>
+
 <body>
 <div class="container-fluid">
     <div th:replace="~{fragments :: nav_bar}"></div>
@@ -13,43 +14,24 @@
     </div>
 </div>
 
-<!--<div class="container border my-5 w-80">-->
-<!--    <div class="row">-->
-<!--        <form method="post" th:action="@{/save}" th:object="${customer}">-->
-<!--            <input th:field="*{firstName}" type="text">-->
-<!--            <input th:field="*{lastName}" type="text">-->
-<!--            <input th:field="*{email}" type="email" placeholder="name@domain.com">-->
-<!--            <input th:field="*{price}" type="number">-->
-<!--            <select th:field="*{accessGranted}" th:default="0">-->
-<!--                <option th:value="1" >true</option>-->
-<!--                <option th:value="0" >false</option>-->
-<!--            </select>-->
-<!--            <button type="submit">Add</button>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
 <div class="container border my-5 w-80">
     <div class="row">
-        <form method="post" th:action="@{/save}" th:object="${customer}">
+        <form method="post" th:action="@{/customers/{id} (id=${customer.id})}" th:object="${customer}">
             <div class="form-group">
                 <label>First name</label>
-                <input th:field="*{firstName}" type="text" class="form-control">
-                <p th:if="${#fields.hasErrors('firstName')}"
-                   th:class="${#fields.hasErrors('firstName')}? error">First name cannot be empty</p>
+                <input th:field="*{firstName}" type="text" placeholder="a" class="form-control">
             </div>
             <div class="form-group">
                 <label>Last name</label>
-                <input th:field="*{lastName}" type="text" class="form-control">
-                <p th:if="${#fields.hasErrors('lastName')}"
-                   th:class="${#fields.hasErrors('lastName')}? error">Last name cannot be empty</p>
+                <input th:field="*{lastName}" type="text" placeholder="a" class="form-control">
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input th:field="*{email}" type="text" class="form-control">
+                <input th:field="*{email}" type="text" placeholder="a" class="form-control">
             </div>
             <div class="form-group">
                 <label>Date of creation</label>
-                <p th:text="*{#temporals.format(dateOfCreation, 'dd-MM-yyyy')}" th:field="*{dateOfCreation}" type="text" readonly class="form-control-plaintext">
+                <input th:field="*{dateOfCreation}" type="text" placeholder="a" readonly class="form-control-plaintext">
             </div>
             <div class="form-group">
                 <label class="form-label">Leader</label>
@@ -63,15 +45,15 @@
             </div>
             <div class="form-group">
                 <label>Practice site</label>
-                <input th:field="*{practiceWebsite}" type="text" class="form-control">
+                <input th:field="*{practiceWebsite}" type="text" placeholder="a" class="form-control">
             </div>
             <div class="form-group">
                 <label>Date of granted access</label>
-                <input th:field="*{dateOfGrantedAccess}" type="date" class="form-control">
+                <input th:field="*{dateOfGrantedAccess}" type="date" placeholder="a" class="form-control">
             </div>
             <div class="form-group">
                 <label>Access granted by</label>
-                <input th:field="*{accessGrantedBy}" type="text" class="form-control">
+                <input th:field="*{accessGrantedBy}" type="text" placeholder="a" class="form-control">
             </div>
             <div class="form-group">
                 <label>Access granted?</label>
@@ -82,12 +64,14 @@
             </div>
             <div class="form-group">
                 <label>Price</label>
-                <input th:value="*{price} ? defaultPrice : defaultPrice" th:default="1" type="number" class="form-control">
+                <input th:field="*{price}" type="number" placeholder="a" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
 </div>
 
+<script th:src="@{webjars/popper.js/2.11.7/umd/popper.min.js}"></script>
+<script th:src="@{webjars/jquery/3.7.1/jquery.min.js}"></script>
 </body>
 </html>

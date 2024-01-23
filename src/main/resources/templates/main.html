@@ -1,33 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-    <style>
-        [class*='col'] {
-            padding: 1rem;
-            background-color: deepskyblue;
-            border: 2px solid #fff;
-            color: #fff;
-        }
-    </style>
+<head th:replace="~{fragments :: bootstrap}">
+    <title>Home</title>
 </head>
 <body>
 <div class="container-fluid">
+    <div th:replace="~{fragments :: nav_bar}"></div>
+    <div class="container-fluid my-5 border w-50">
+        <div class="row">
+            <div class="col"></div>
+            <a th:href="@{/save}">Add customer</a>
+            <a th:href="@{/customers}">Customers</a>
+            <a th:href="@{/}">Back</a>
+        </div>
+    </div>
     <div class="row">
-        <div class="col"></div>
+        <div class="col-sm-4 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Przychod</h5>
+                    <div class="row">
+                        <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                            <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                <h2 class="mb-0" th:text="|${revenue} zł|"></h2>
+                                <p class="text-success ml-2 mb-0 font-weight-medium">-</p>
+                            </div>
+                            <h6 class="text-muted font-weight-normal">-</h6>
+                        </div>
+                        <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                            <i class="bi-file-bar-graph-fill text-primary" style="font-size: 2.2rem"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="row my-4">
+        <div class="col-sm-4 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Top liderzy</h5>
+                    <div class="row">
+                        <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                            <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                <ul class="list-unstyled">
+                                    <li th:each="entry : ${top3Leaders}">
+                                        <span class="mb-0" th:text="${entry.key}"></span>
+                                        <span class="mb-0" th:text="${entry.value}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+<!--                            <h6 class="text-muted font-weight-normal">11.38% Since last month</h6>-->
+                        </div>
+                        <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                            <i class="bi-star-fill text-primary" style="font-size: 2.2rem"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-
-<div class="container border my-5 w-50">
-    <div class="row">
-        <div class="col"></div>
-        <a href="/save">Add customer</a>
-    </div>
-</div>
-
-<script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

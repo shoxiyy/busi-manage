@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: bootstrap}">
+    <title>Customers</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+        <a th:href="@{/save}">Add customer</a>
+        <a th:href="@{/}">Back</a>
+    </div>
+</div>
+
+<div class="container border my-5 w-80">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First&last name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Date of creation</th>
+                <th scope="col">Leader</th>
+                <th scope="col">Practice Site</th>
+                <th scope="col">Date of granted access</th>
+                <th scope="col">Access granted by</th>
+                <th scope="col">Access granted</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${customersList}" th:object="${customer}">
+                <td th:text="*{id}"></td>
+                <td><a th:href="@{'/customers/' + *{id}}" th:text="|*{firstName} *{lastName}|"></a> </td>
+                <td th:text="*{email}"></td>
+                <td th:text="*{dateOfCreation}"></td>
+                <td><a th:href="@{'/customers/' + *{leader.id}}" th:text="*{leader}"></a> </td>
+                <td><a th:href="*{practiceWebsite}" th:target="_blank">Link</a></td>
+                <td th:text="*{#dates.format(dateOfGrantedAccess, 'dd-MM-yyyy')}"></td>
+                <td th:text="*{accessGrantedBy}"></td>
+                <td th:text="*{accessGranted}"></td>
+                <td th:text="|*{price} zł|"></td>
+                <td><a th:href="@{'/customers/edit/' + *{id}}">Update</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

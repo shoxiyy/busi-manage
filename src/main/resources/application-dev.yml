@@ -7,5 +7,9 @@ spring:
 #      ddl-auto:
   thymeleaf:
     prefix: classpath:/templates/
+#  mvc:
+#    hiddenmethod:
+#      filter:
+#        enabled: true
   liquibase:
     change-log: classpath:changelog.xml
